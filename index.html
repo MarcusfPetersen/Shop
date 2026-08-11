@@ -1,15 +1,21 @@
-create table public.shared_lists (
-  code text primary key,
-  name text not null default '',
-  items jsonb not null default '[]'::jsonb,
-  favorites jsonb not null default '[]'::jsonb,
-  updated_at timestamptz not null default now()
-);
-
-alter table public.shared_lists enable row level security;
-
-create policy "Alle kan læse og skrive delte lister"
-on public.shared_lists
-for all
-using (true)
-with check (true);
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body { margin: 0; background: #F5F6F0; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
