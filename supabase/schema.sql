@@ -1,9 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+create table public.shared_lists (
+  code text primary key,
+  name text not null default '',
+  items jsonb not null default '[]'::jsonb,
+  favorites jsonb not null default '[]'::jsonb,
+  updated_at timestamptz not null default now()
 );
+
+alter table public.shared_lists enable row level security;
+
+create policy "Alle kan læse og skrive delte lister"
+on public.shared_lists
+for all
+using (true)
+with check (true);
